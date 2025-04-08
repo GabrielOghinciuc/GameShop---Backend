@@ -5,6 +5,28 @@
     "version": "1.0"
   },
   "paths": {
+    "/Games/image/{imagePath}": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "parameters": [
+          {
+            "name": "imagePath",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Games": {
       "post": {
         "tags": [
@@ -12,19 +34,107 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/GameDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GameDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GameDto"
+                "required": [
+                  "Genre",
+                  "Image",
+                  "Name",
+                  "OriginalPrice",
+                  "Rating"
+                ],
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Name": {
+                    "maxLength": 100,
+                    "minLength": 0,
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "Image": {
+                    "type": "string"
+                  },
+                  "Picture": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "OriginalPrice": {
+                    "minimum": 0,
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "DiscountedPrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Rating": {
+                    "maximum": 5,
+                    "minimum": 0,
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "showFullDescription": {
+                    "type": "boolean"
+                  },
+                  "showOnFirstPage": {
+                    "type": "boolean"
+                  },
+                  "Platforms": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "Genre": {
+                    "maxLength": 50,
+                    "minLength": 0,
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Id": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "Image": {
+                  "style": "form"
+                },
+                "Picture": {
+                  "style": "form"
+                },
+                "OriginalPrice": {
+                  "style": "form"
+                },
+                "DiscountedPrice": {
+                  "style": "form"
+                },
+                "Rating": {
+                  "style": "form"
+                },
+                "showFullDescription": {
+                  "style": "form"
+                },
+                "showOnFirstPage": {
+                  "style": "form"
+                },
+                "Platforms": {
+                  "style": "form"
+                },
+                "Genre": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -64,19 +174,107 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/GameDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GameDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GameDto"
+                "required": [
+                  "Genre",
+                  "Image",
+                  "Name",
+                  "OriginalPrice",
+                  "Rating"
+                ],
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Name": {
+                    "maxLength": 100,
+                    "minLength": 0,
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "Image": {
+                    "type": "string"
+                  },
+                  "Picture": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "OriginalPrice": {
+                    "minimum": 0,
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "DiscountedPrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Rating": {
+                    "maximum": 5,
+                    "minimum": 0,
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "showFullDescription": {
+                    "type": "boolean"
+                  },
+                  "showOnFirstPage": {
+                    "type": "boolean"
+                  },
+                  "Platforms": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "Genre": {
+                    "maxLength": 50,
+                    "minLength": 0,
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Id": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "Image": {
+                  "style": "form"
+                },
+                "Picture": {
+                  "style": "form"
+                },
+                "OriginalPrice": {
+                  "style": "form"
+                },
+                "DiscountedPrice": {
+                  "style": "form"
+                },
+                "Rating": {
+                  "style": "form"
+                },
+                "showFullDescription": {
+                  "style": "form"
+                },
+                "showOnFirstPage": {
+                  "style": "form"
+                },
+                "Platforms": {
+                  "style": "form"
+                },
+                "Genre": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -172,19 +370,107 @@
         ],
         "requestBody": {
           "content": {
-            "application/json": {
+            "multipart/form-data": {
               "schema": {
-                "$ref": "#/components/schemas/GameDto"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "$ref": "#/components/schemas/GameDto"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "$ref": "#/components/schemas/GameDto"
+                "required": [
+                  "Genre",
+                  "Image",
+                  "Name",
+                  "OriginalPrice",
+                  "Rating"
+                ],
+                "type": "object",
+                "properties": {
+                  "Id": {
+                    "type": "integer",
+                    "format": "int32"
+                  },
+                  "Name": {
+                    "maxLength": 100,
+                    "minLength": 0,
+                    "type": "string"
+                  },
+                  "Description": {
+                    "type": "string"
+                  },
+                  "Image": {
+                    "type": "string"
+                  },
+                  "Picture": {
+                    "type": "string",
+                    "format": "binary"
+                  },
+                  "OriginalPrice": {
+                    "minimum": 0,
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "DiscountedPrice": {
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "Rating": {
+                    "maximum": 5,
+                    "minimum": 0,
+                    "type": "number",
+                    "format": "double"
+                  },
+                  "showFullDescription": {
+                    "type": "boolean"
+                  },
+                  "showOnFirstPage": {
+                    "type": "boolean"
+                  },
+                  "Platforms": {
+                    "type": "array",
+                    "items": {
+                      "type": "string"
+                    }
+                  },
+                  "Genre": {
+                    "maxLength": 50,
+                    "minLength": 0,
+                    "type": "string"
+                  }
+                }
+              },
+              "encoding": {
+                "Id": {
+                  "style": "form"
+                },
+                "Name": {
+                  "style": "form"
+                },
+                "Description": {
+                  "style": "form"
+                },
+                "Image": {
+                  "style": "form"
+                },
+                "Picture": {
+                  "style": "form"
+                },
+                "OriginalPrice": {
+                  "style": "form"
+                },
+                "DiscountedPrice": {
+                  "style": "form"
+                },
+                "Rating": {
+                  "style": "form"
+                },
+                "showFullDescription": {
+                  "style": "form"
+                },
+                "showOnFirstPage": {
+                  "style": "form"
+                },
+                "Platforms": {
+                  "style": "form"
+                },
+                "Genre": {
+                  "style": "form"
+                }
               }
             }
           }
@@ -216,136 +502,7 @@
           }
         }
       }
-    },
-    "/WeatherForecast": {
-      "get": {
-        "tags": [
-          "WeatherForecast"
-        ],
-        "operationId": "GetWeatherForecast",
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "text/plain": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
-              },
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
-              },
-              "text/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/WeatherForecast"
-                  }
-                }
-              }
-            }
-          }
-        }
-      }
     }
   },
-  "components": {
-    "schemas": {
-      "GameDto": {
-        "required": [
-          "genre",
-          "image",
-          "name",
-          "originalPrice",
-          "rating"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "name": {
-            "maxLength": 100,
-            "minLength": 0,
-            "type": "string"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "image": {
-            "minLength": 1,
-            "type": "string"
-          },
-          "originalPrice": {
-            "minimum": 0,
-            "type": "number",
-            "format": "double"
-          },
-          "discountedPrice": {
-            "type": "number",
-            "format": "double",
-            "nullable": true
-          },
-          "rating": {
-            "maximum": 5,
-            "minimum": 0,
-            "type": "number",
-            "format": "double"
-          },
-          "showFullDescription": {
-            "type": "boolean"
-          },
-          "showOnFirstPage": {
-            "type": "boolean"
-          },
-          "platforms": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            },
-            "nullable": true
-          },
-          "genre": {
-            "maxLength": 50,
-            "minLength": 0,
-            "type": "string"
-          }
-        },
-        "additionalProperties": false
-      },
-      "WeatherForecast": {
-        "type": "object",
-        "properties": {
-          "date": {
-            "type": "string",
-            "format": "date"
-          },
-          "temperatureC": {
-            "type": "integer",
-            "format": "int32"
-          },
-          "temperatureF": {
-            "type": "integer",
-            "format": "int32",
-            "readOnly": true
-          },
-          "summary": {
-            "type": "string",
-            "nullable": true
-          }
-        },
-        "additionalProperties": false
-      }
-    }
-  }
+  "components": { }
 }

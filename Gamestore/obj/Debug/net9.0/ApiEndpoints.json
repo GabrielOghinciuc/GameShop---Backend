@@ -8,9 +8,64 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "gameDto",
-        "Type": "Gamestore.Models.GameDto",
-        "IsRequired": true
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Picture",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "OriginalPrice",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "DiscountedPrice",
+        "Type": "System.Nullable\u00601[[System.Double, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Rating",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "showFullDescription",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "showOnFirstPage",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Platforms",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Genre",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -39,9 +94,64 @@
         "IsRequired": true
       },
       {
-        "Name": "gameDto",
-        "Type": "Gamestore.Models.GameDto",
-        "IsRequired": true
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Picture",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "OriginalPrice",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "DiscountedPrice",
+        "Type": "System.Nullable\u00601[[System.Double, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Rating",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "showFullDescription",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "showOnFirstPage",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Platforms",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Genre",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -92,9 +202,64 @@
         "IsRequired": true
       },
       {
-        "Name": "gameDto",
-        "Type": "Gamestore.Models.GameDto",
-        "IsRequired": true
+        "Name": "Id",
+        "Type": "System.Int32",
+        "IsRequired": false
+      },
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Description",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Image",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Picture",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      },
+      {
+        "Name": "OriginalPrice",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "DiscountedPrice",
+        "Type": "System.Nullable\u00601[[System.Double, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Rating",
+        "Type": "System.Double",
+        "IsRequired": false
+      },
+      {
+        "Name": "showFullDescription",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "showOnFirstPage",
+        "Type": "System.Boolean",
+        "IsRequired": false
+      },
+      {
+        "Name": "Platforms",
+        "Type": "System.Collections.Generic.List\u00601[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]",
+        "IsRequired": false
+      },
+      {
+        "Name": "Genre",
+        "Type": "System.String",
+        "IsRequired": false
       }
     ],
     "ReturnTypes": []
@@ -121,6 +286,22 @@
   },
   {
     "ContainingType": "Gamestore.Controllers.GamesController",
+    "Method": "GetImage",
+    "RelativePath": "Games/image/{imagePath}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "imagePath",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gamestore.Controllers.GamesController",
     "Method": "SearchGames",
     "RelativePath": "Games/search",
     "HttpMethod": "GET",
@@ -134,26 +315,5 @@
       }
     ],
     "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gamestore.Controllers.WeatherForecastController",
-    "Method": "Get",
-    "RelativePath": "WeatherForecast",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [],
-    "ReturnTypes": [
-      {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[Gamestore.WeatherForecast, Gamestore, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ],
-    "EndpointName": "GetWeatherForecast"
   }
 ]

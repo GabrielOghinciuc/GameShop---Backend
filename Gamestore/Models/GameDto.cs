@@ -1,6 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Gamestore.Validations;
+using Microsoft.AspNetCore.Http;  // Add this line
 
 namespace Gamestore.Models
 {
@@ -21,6 +22,10 @@ namespace Gamestore.Models
 
         [Required]
         public string Image { get; set; }
+
+        [NotMapped]  // Add this line
+        public IFormFile? Picture { get; set; }
+
 
         [Required]
         [Range(0, double.MaxValue)]

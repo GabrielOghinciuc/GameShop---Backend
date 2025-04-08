@@ -168,3 +168,6 @@ C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\refint\Gamest
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\Gamestore.pdb
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\Gamestore.genruntimeconfig.cache
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\ref\Gamestore.dll
+C:\Users\Gabriel\source\repos\Gamestore\Gamestore\bin\Debug\net9.0\Gamestore.staticwebassets.runtime.json
+C:\Users\Gabriel\source\repos\Gamestore\Gamestore\bin\Debug\net9.0\AutoMapper.dll
+C:\Users\Gabriel\source\repos\Gamestore\Gamestore\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

@@ -1,0 +1,37 @@
+{
+  "Files": [
+    {
+      "Id": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\19301434-0be7-4f4d-a339-777d71db280b.jpg",
+      "PackagePath": "staticwebassets\\games\\19301434-0be7-4f4d-a339-777d71db280b.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\37c5ed81-01fd-4ff9-aa3c-1a6669e8b0fa.jpg",
+      "PackagePath": "staticwebassets\\games\\37c5ed81-01fd-4ff9-aa3c-1a6669e8b0fa.jpg"
+    },
+    {
+      "Id": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\3ed54acd-6668-4eec-84eb-b96428aa8e10.jpg",
+      "PackagePath": "staticwebassets\\games\\3ed54acd-6668-4eec-84eb-b96428aa8e10.jpg"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Gamestore.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Gamestore.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.build.Gamestore.props",
+      "PackagePath": "build\\Gamestore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildMultiTargeting.Gamestore.props",
+      "PackagePath": "buildMultiTargeting\\Gamestore.props"
+    },
+    {
+      "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.buildTransitive.Gamestore.props",
+      "PackagePath": "buildTransitive\\Gamestore.props"
+    }
+  ],
+  "ElementsToRemove": []
+}
