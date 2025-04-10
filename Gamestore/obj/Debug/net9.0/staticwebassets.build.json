@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "a2VIOguTqZqL4n2gPZdRcLhBeQwEsD1vips2dJ65O60=",
+  "Hash": "dhGe7+9qe503VGIp4I2AXKtiTUEripPf7KII8CnDfq8=",
   "Source": "Gamestore",
   "BasePath": "_content/Gamestore",
   "Mode": "Default",
@@ -78,6 +78,69 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\games\\3ed54acd-6668-4eec-84eb-b96428aa8e10.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\ae14d9cb-27e5-40cf-b096-feb8b643c27b.jfif",
+      "SourceId": "Gamestore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\",
+      "BasePath": "_content/Gamestore",
+      "RelativePath": "games/ae14d9cb-27e5-40cf-b096-feb8b643c27b#[.{fingerprint}]?.jfif",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "ex47rgzc4h",
+      "Integrity": "ToAqSRC4FffCbkTMAo5RKdS7jQwy8XDk8NhIoUiAz3A=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\games\\ae14d9cb-27e5-40cf-b096-feb8b643c27b.jfif"
+    },
+    {
+      "Identity": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\c05eef58-0700-45b2-9fb7-639cfcd36812.png",
+      "SourceId": "Gamestore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\",
+      "BasePath": "_content/Gamestore",
+      "RelativePath": "games/c05eef58-0700-45b2-9fb7-639cfcd36812#[.{fingerprint}]?.png",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "d5685wys5b",
+      "Integrity": "IZY6fwB04Nh2IikMn1Ii8xTQyVqfgpRfZ2Bd0+sZbMM=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\games\\c05eef58-0700-45b2-9fb7-639cfcd36812.png"
+    },
+    {
+      "Identity": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\f6babd71-7272-4696-933c-d526a1c15632.jpg",
+      "SourceId": "Gamestore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\",
+      "BasePath": "_content/Gamestore",
+      "RelativePath": "games/f6babd71-7272-4696-933c-d526a1c15632#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "4824rtvh6p",
+      "Integrity": "RKNKLkk0szJti2b8qv6n5ykeKrftUaa7s6LAtkwji4o=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\games\\f6babd71-7272-4696-933c-d526a1c15632.jpg"
     }
   ],
   "Endpoints": [
@@ -324,6 +387,252 @@
         {
           "Name": "integrity",
           "Value": "sha256-dD4icngi5xeDuJ7AS0AbJFpPb0r68DkAyuDUWsRZdAk="
+        }
+      ]
+    },
+    {
+      "Route": "games/ae14d9cb-27e5-40cf-b096-feb8b643c27b.ex47rgzc4h.jfif",
+      "AssetFile": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\ae14d9cb-27e5-40cf-b096-feb8b643c27b.jfif",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5575"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/pjpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ToAqSRC4FffCbkTMAo5RKdS7jQwy8XDk8NhIoUiAz3A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 08 Apr 2025 20:48:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "ex47rgzc4h"
+        },
+        {
+          "Name": "label",
+          "Value": "games/ae14d9cb-27e5-40cf-b096-feb8b643c27b.jfif"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-ToAqSRC4FffCbkTMAo5RKdS7jQwy8XDk8NhIoUiAz3A="
+        }
+      ]
+    },
+    {
+      "Route": "games/ae14d9cb-27e5-40cf-b096-feb8b643c27b.jfif",
+      "AssetFile": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\ae14d9cb-27e5-40cf-b096-feb8b643c27b.jfif",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "5575"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/pjpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"ToAqSRC4FffCbkTMAo5RKdS7jQwy8XDk8NhIoUiAz3A=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 08 Apr 2025 20:48:51 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-ToAqSRC4FffCbkTMAo5RKdS7jQwy8XDk8NhIoUiAz3A="
+        }
+      ]
+    },
+    {
+      "Route": "games/c05eef58-0700-45b2-9fb7-639cfcd36812.d5685wys5b.png",
+      "AssetFile": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\c05eef58-0700-45b2-9fb7-639cfcd36812.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "560022"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IZY6fwB04Nh2IikMn1Ii8xTQyVqfgpRfZ2Bd0+sZbMM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 08 Apr 2025 21:52:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "d5685wys5b"
+        },
+        {
+          "Name": "label",
+          "Value": "games/c05eef58-0700-45b2-9fb7-639cfcd36812.png"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-IZY6fwB04Nh2IikMn1Ii8xTQyVqfgpRfZ2Bd0+sZbMM="
+        }
+      ]
+    },
+    {
+      "Route": "games/c05eef58-0700-45b2-9fb7-639cfcd36812.png",
+      "AssetFile": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\c05eef58-0700-45b2-9fb7-639cfcd36812.png",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "560022"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/png"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"IZY6fwB04Nh2IikMn1Ii8xTQyVqfgpRfZ2Bd0+sZbMM=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Tue, 08 Apr 2025 21:52:26 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-IZY6fwB04Nh2IikMn1Ii8xTQyVqfgpRfZ2Bd0+sZbMM="
+        }
+      ]
+    },
+    {
+      "Route": "games/f6babd71-7272-4696-933c-d526a1c15632.4824rtvh6p.jpg",
+      "AssetFile": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\f6babd71-7272-4696-933c-d526a1c15632.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "39178"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RKNKLkk0szJti2b8qv6n5ykeKrftUaa7s6LAtkwji4o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 09 Apr 2025 22:21:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "4824rtvh6p"
+        },
+        {
+          "Name": "label",
+          "Value": "games/f6babd71-7272-4696-933c-d526a1c15632.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-RKNKLkk0szJti2b8qv6n5ykeKrftUaa7s6LAtkwji4o="
+        }
+      ]
+    },
+    {
+      "Route": "games/f6babd71-7272-4696-933c-d526a1c15632.jpg",
+      "AssetFile": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\games\\f6babd71-7272-4696-933c-d526a1c15632.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "39178"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"RKNKLkk0szJti2b8qv6n5ykeKrftUaa7s6LAtkwji4o=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 09 Apr 2025 22:21:55 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-RKNKLkk0szJti2b8qv6n5ykeKrftUaa7s6LAtkwji4o="
         }
       ]
     }

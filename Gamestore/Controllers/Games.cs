@@ -28,13 +28,11 @@ public class GamesController : ControllerBase
     {
         if (string.IsNullOrEmpty(imagePath)) return "";
 
-        // If it's an external URL (contains http but not our own domain)
         if (imagePath.StartsWith("http") && !imagePath.Contains("/games/"))
         {
             return imagePath;
         }
 
-        // If it's already a full local URL, extract the relative path after /games/
         if (imagePath.Contains("/games/"))
         {
             imagePath = imagePath[(imagePath.IndexOf("/games/") + 7)..];
@@ -223,14 +221,17 @@ public class GamesController : ControllerBase
         }
     }
 
-    [HttpGet("game-list")]
+    [HttpGet("game-list/{page:int=1}")]
     [OutputCache(PolicyName = "LongCache")]
-    public async Task<IActionResult> GetSiteGames()
+    public async Task<IActionResult> GetSiteGames(int page)
     {
         try
         {
+            const int pageSize = 15;
             var httpContext = HttpContext;
-            var siteGames = await _context.Games
+
+            var query = _context.Games
+                .AsNoTracking()
                 .Select(g => new LimitedGameDto
                 {
                     Id = g.Id,
@@ -241,10 +242,30 @@ public class GamesController : ControllerBase
                     DiscountedPrice = g.DiscountedPrice,
                     Platforms = g.Platforms,
                     showFullDescription = g.showFullDescription
-                })
+                });
+
+            var totalGames = await query.CountAsync();
+            var totalPages = (int)Math.Ceiling(totalGames / (double)pageSize);
+
+            page = Math.Max(1, Math.Min(page, totalPages));
+
+            var games = await query
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
                 .ToListAsync();
 
-            return Ok(siteGames);
+            var response = new
+            {
+                Games = games,
+                CurrentPage = page,
+                PageSize = pageSize,
+                TotalGames = totalGames,
+                TotalPages = totalPages,
+                HasNext = page < totalPages,
+                HasPrevious = page > 1
+            };
+
+            return Ok(response);
         }
         catch (Exception ex)
         {
@@ -370,6 +391,41 @@ public class GamesController : ControllerBase
         catch (Exception ex)
         {
             return StatusCode(500, $"An error occurred while searching for games: {ex.Message}");
+        }
+    }
+
+    [HttpGet("genre/{genre}")]
+    public async Task<IActionResult> GetGamesByGenre(string genre)
+    {
+        try
+        {
+            var httpContext = HttpContext;
+            var games = await _context.Games
+                .AsNoTracking()
+                .Where(g => g.Genre.ToLower().Contains(genre.ToLower()))
+                .Select(g => new LimitedGameDto
+                {
+                    Id = g.Id,
+                    Name = g.Name,
+                    Description = g.Description,
+                    Image = g.Image.StartsWith("http") ? g.Image : $"{httpContext.Request.Scheme}://{httpContext.Request.Host}/games/{g.Image}",
+                    OriginalPrice = g.OriginalPrice,
+                    DiscountedPrice = g.DiscountedPrice,
+                    Platforms = g.Platforms,
+                    showFullDescription = g.showFullDescription
+                })
+                .ToListAsync();
+
+            if (!games.Any())
+            {
+                return NotFound($"No games found for genre: {genre}");
+            }
+
+            return Ok(games);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred while retrieving games by genre: {ex.Message}");
         }
     }
 }

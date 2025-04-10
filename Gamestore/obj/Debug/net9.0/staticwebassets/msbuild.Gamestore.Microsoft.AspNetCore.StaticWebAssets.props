@@ -54,5 +54,59 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\3ed54acd-6668-4eec-84eb-b96428aa8e10.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\ae14d9cb-27e5-40cf-b096-feb8b643c27b.jfif'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Gamestore</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Gamestore</BasePath>
+      <RelativePath>games/ae14d9cb-27e5-40cf-b096-feb8b643c27b.jfif</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>ex47rgzc4h</Fingerprint>
+      <Integrity>ToAqSRC4FffCbkTMAo5RKdS7jQwy8XDk8NhIoUiAz3A=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\ae14d9cb-27e5-40cf-b096-feb8b643c27b.jfif'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\c05eef58-0700-45b2-9fb7-639cfcd36812.png'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Gamestore</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Gamestore</BasePath>
+      <RelativePath>games/c05eef58-0700-45b2-9fb7-639cfcd36812.png</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>d5685wys5b</Fingerprint>
+      <Integrity>IZY6fwB04Nh2IikMn1Ii8xTQyVqfgpRfZ2Bd0+sZbMM=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\c05eef58-0700-45b2-9fb7-639cfcd36812.png'))</OriginalItemSpec>
+    </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\f6babd71-7272-4696-933c-d526a1c15632.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Gamestore</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Gamestore</BasePath>
+      <RelativePath>games/f6babd71-7272-4696-933c-d526a1c15632.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>4824rtvh6p</Fingerprint>
+      <Integrity>RKNKLkk0szJti2b8qv6n5ykeKrftUaa7s6LAtkwji4o=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\f6babd71-7272-4696-933c-d526a1c15632.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
   </ItemGroup>
 </Project>

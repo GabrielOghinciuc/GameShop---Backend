@@ -328,10 +328,21 @@
         }
       }
     },
-    "/Games/game-list": {
+    "/Games/game-list/{page}": {
       "get": {
         "tags": [
           "Games"
+        ],
+        "parameters": [
+          {
+            "name": "page",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
+            }
+          }
         ],
         "responses": {
           "200": {
@@ -491,6 +502,28 @@
           {
             "name": "query",
             "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/Games/genre/{genre}": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "parameters": [
+          {
+            "name": "genre",
+            "in": "path",
+            "required": true,
             "schema": {
               "type": "string"
             }

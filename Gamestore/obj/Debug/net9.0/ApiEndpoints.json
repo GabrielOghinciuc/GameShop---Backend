@@ -277,11 +277,33 @@
   {
     "ContainingType": "Gamestore.Controllers.GamesController",
     "Method": "GetSiteGames",
-    "RelativePath": "Games/game-list",
+    "RelativePath": "Games/game-list/{page}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
-    "Parameters": [],
+    "Parameters": [
+      {
+        "Name": "page",
+        "Type": "System.Int32",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gamestore.Controllers.GamesController",
+    "Method": "GetGamesByGenre",
+    "RelativePath": "Games/genre/{genre}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "genre",
+        "Type": "System.String",
+        "IsRequired": true
+      }
+    ],
     "ReturnTypes": []
   },
   {
