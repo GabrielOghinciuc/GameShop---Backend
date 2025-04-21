@@ -25,6 +25,10 @@
       "PackagePath": "staticwebassets\\games\\f6babd71-7272-4696-933c-d526a1c15632.jpg"
     },
     {
+      "Id": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\user\\user.jpg",
+      "PackagePath": "staticwebassets\\user\\user.jpg"
+    },
+    {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.Gamestore.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
       "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
     },

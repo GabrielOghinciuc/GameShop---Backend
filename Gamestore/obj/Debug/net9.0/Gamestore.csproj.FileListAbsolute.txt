@@ -161,7 +161,6 @@ C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\staticwebasse
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\staticwebassets\msbuild.buildMultiTargeting.Gamestore.props
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\staticwebassets\msbuild.buildTransitive.Gamestore.props
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\staticwebassets.pack.json
-C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\Gamestore.csproj.Up2Date
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\Gamestore.dll
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\refint\Gamestore.dll
@@ -171,3 +170,4 @@ C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\ref\Gamestore
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\bin\Debug\net9.0\Gamestore.staticwebassets.runtime.json
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\bin\Debug\net9.0\AutoMapper.dll
 C:\Users\Gabriel\source\repos\Gamestore\Gamestore\bin\Debug\net9.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+C:\Users\Gabriel\source\repos\Gamestore\Gamestore\obj\Debug\net9.0\staticwebassets.upToDateCheck.txt

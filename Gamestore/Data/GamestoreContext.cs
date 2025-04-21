@@ -12,6 +12,7 @@ namespace Gamestore.Data
         }
 
         public DbSet<GameDto> Games { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -42,6 +43,14 @@ namespace Gamestore.Data
                     .IsRequired()
                     .HasMaxLength(50);
             });
+
+            // Configure BoughtGames as a JSON column
+            modelBuilder.Entity<User>()
+                .Property(u => u.BoughtGames)
+                .HasConversion(
+                    v => string.Join(',', v),
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList()
+                );
         }
     }
 }

@@ -4,3 +4,4 @@ wwwroot\games\3ed54acd-6668-4eec-84eb-b96428aa8e10.jpg
 wwwroot\games\ae14d9cb-27e5-40cf-b096-feb8b643c27b.jfif
 wwwroot\games\c05eef58-0700-45b2-9fb7-639cfcd36812.png
 wwwroot\games\f6babd71-7272-4696-933c-d526a1c15632.jpg
+wwwroot\user\user.jpg

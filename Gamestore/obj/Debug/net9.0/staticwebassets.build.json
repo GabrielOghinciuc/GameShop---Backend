@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "dhGe7+9qe503VGIp4I2AXKtiTUEripPf7KII8CnDfq8=",
+  "Hash": "zM5bqdoQwkQ9UC3rE4mdbgAbboIpswl/TqYt6GFabPY=",
   "Source": "Gamestore",
   "BasePath": "_content/Gamestore",
   "Mode": "Default",
@@ -141,6 +141,27 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\games\\f6babd71-7272-4696-933c-d526a1c15632.jpg"
+    },
+    {
+      "Identity": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\user\\user.jpg",
+      "SourceId": "Gamestore",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\",
+      "BasePath": "_content/Gamestore",
+      "RelativePath": "user/user#[.{fingerprint}]?.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "AssetMergeBehavior": "",
+      "AssetMergeSource": "",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "Fingerprint": "if1lel7pw8",
+      "Integrity": "fuyCNVIEwoBMPUOxVZZfvhJgVSW4u5cMYD2W+uT1eaQ=",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\user\\user.jpg"
     }
   ],
   "Endpoints": [
@@ -633,6 +654,88 @@
         {
           "Name": "integrity",
           "Value": "sha256-RKNKLkk0szJti2b8qv6n5ykeKrftUaa7s6LAtkwji4o="
+        }
+      ]
+    },
+    {
+      "Route": "user/user.if1lel7pw8.jpg",
+      "AssetFile": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\user\\user.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1716589"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fuyCNVIEwoBMPUOxVZZfvhJgVSW4u5cMYD2W+uT1eaQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 14 Feb 2024 08:50:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=31536000, immutable"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "fingerprint",
+          "Value": "if1lel7pw8"
+        },
+        {
+          "Name": "label",
+          "Value": "user/user.jpg"
+        },
+        {
+          "Name": "integrity",
+          "Value": "sha256-fuyCNVIEwoBMPUOxVZZfvhJgVSW4u5cMYD2W+uT1eaQ="
+        }
+      ]
+    },
+    {
+      "Route": "user/user.jpg",
+      "AssetFile": "C:\\Users\\Gabriel\\source\\repos\\Gamestore\\Gamestore\\wwwroot\\user\\user.jpg",
+      "Selectors": [],
+      "ResponseHeaders": [
+        {
+          "Name": "Accept-Ranges",
+          "Value": "bytes"
+        },
+        {
+          "Name": "Content-Length",
+          "Value": "1716589"
+        },
+        {
+          "Name": "Content-Type",
+          "Value": "image/jpeg"
+        },
+        {
+          "Name": "ETag",
+          "Value": "\"fuyCNVIEwoBMPUOxVZZfvhJgVSW4u5cMYD2W+uT1eaQ=\""
+        },
+        {
+          "Name": "Last-Modified",
+          "Value": "Wed, 14 Feb 2024 08:50:36 GMT"
+        },
+        {
+          "Name": "Cache-Control",
+          "Value": "max-age=3600, must-revalidate"
+        }
+      ],
+      "EndpointProperties": [
+        {
+          "Name": "integrity",
+          "Value": "sha256-fuyCNVIEwoBMPUOxVZZfvhJgVSW4u5cMYD2W+uT1eaQ="
         }
       ]
     }
