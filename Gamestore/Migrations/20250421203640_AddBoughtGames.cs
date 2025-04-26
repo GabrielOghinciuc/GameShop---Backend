@@ -26,18 +26,27 @@ namespace Gamestore.Migrations
                     ProfilePicture = table.Column<string>(type: "nvarchar(max)", nullable: false, defaultValue: "/user/user.jpg"),
                     IsClient = table.Column<bool>(type: "bit", nullable: false),
                     IsGameDeveloper = table.Column<bool>(type: "bit", nullable: false),
-                    IsAdmin = table.Column<bool>(type: "bit", nullable: false),
-                    BoughtGames = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                    IsAdmin = table.Column<bool>(type: "bit", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Users", x => x.Id);
                 });
+
+            migrationBuilder.AddColumn<string>(
+                name: "BoughtGames",
+                table: "Users",
+                type: "nvarchar(max)",
+                nullable: true);
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropColumn(
+                name: "BoughtGames",
+                table: "Users");
+
             migrationBuilder.DropTable(
                 name: "Users");
         }

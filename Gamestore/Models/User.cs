@@ -15,6 +15,6 @@
         public bool IsGameDeveloper { get; set; }
         public bool IsAdmin { get; set; }
 
-        public List<int> BoughtGames { get; set; } = new List<int>();
+        public List<int> BoughtGames { get; set; }
     }
 }

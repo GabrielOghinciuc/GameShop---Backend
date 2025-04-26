@@ -202,6 +202,46 @@ public class GamesController : ControllerBase
         }
     }
 
+    [HttpPost("batch")]
+    public async Task<IActionResult> GetGamesByIds([FromBody] GetGamesByIdsRequest request)
+    {
+        try
+        {
+            if (request.GameIds == null || !request.GameIds.Any())
+            {
+                return BadRequest("No game IDs provided");
+            }
+
+            var games = await _context.Games
+                .Where(g => request.GameIds.Contains(g.Id))
+                .ToListAsync();
+
+            foreach (var game in games)
+            {
+                if (!game.Image.StartsWith("http"))
+                {
+                    game.Image = GetFullImageUrl(game.Image, HttpContext);
+                }
+            }
+
+            var foundIds = games.Select(g => g.Id).ToHashSet();
+            var notFoundIds = request.GameIds.Where(id => !foundIds.Contains(id)).ToList();
+
+            var response = new
+            {
+                Games = games,
+                NotFoundIds = notFoundIds,
+                TotalFound = games.Count
+            };
+
+            return Ok(response);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred while retrieving the games: {ex.Message}");
+        }
+    }
+
     [HttpGet]
     [OutputCache(PolicyName = "LongCache")]
     public async Task<IActionResult> GetAllGames()
