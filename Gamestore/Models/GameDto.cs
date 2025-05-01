@@ -23,7 +23,7 @@ namespace Gamestore.Models
         [Required]
         public string Image { get; set; }
 
-        [NotMapped]  // Add this line
+        [NotMapped]
         public IFormFile? Picture { get; set; }
 
 
@@ -34,7 +34,6 @@ namespace Gamestore.Models
         [ValidateDiscountPrice]
         public double? DiscountedPrice { get; set; }
 
-        [Required]
         [Range(0, 5)]
         public double Rating { get; set; }
 

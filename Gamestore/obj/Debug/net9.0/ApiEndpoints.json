@@ -190,6 +190,27 @@
   },
   {
     "ContainingType": "Gamestore.Controllers.GamesController",
+    "Method": "ReviewGame",
+    "RelativePath": "Games/{id}/review",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "reviewDto",
+        "Type": "Gamestore.Models.GameReviewDto",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gamestore.Controllers.GamesController",
     "Method": "GetGamesByIds",
     "RelativePath": "Games/batch",
     "HttpMethod": "POST",

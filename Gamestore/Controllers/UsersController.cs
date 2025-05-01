@@ -102,7 +102,7 @@ namespace Gamestore.Controllers
                     IsGameDeveloper = user.IsGameDeveloper,
                     IsAdmin = user.IsAdmin,
                     ProfilePicture = user.ProfilePicture,
-                    BoughtGames = user.BoughtGames // Include BoughtGames in the response
+                    BoughtGames = user.BoughtGames
                 })
                 .ToListAsync();
 
@@ -161,13 +161,11 @@ namespace Gamestore.Controllers
                     return BadRequest("Email is already taken");
                 }
 
-                // Update profile picture if provided
                 if (userUpdateDto.ProfilePicture != null)
                 {
                     user.ProfilePicture = await _fileStorage.Edit(user.ProfilePicture, container, userUpdateDto.ProfilePicture);
                 }
 
-                // Update other fields if provided
                 if (!string.IsNullOrEmpty(userUpdateDto.Username)) user.Username = userUpdateDto.Username;
                 if (!string.IsNullOrEmpty(userUpdateDto.Email)) user.Email = userUpdateDto.Email;
                 if (!string.IsNullOrEmpty(userUpdateDto.Password)) user.Password = userUpdateDto.Password;
@@ -256,6 +254,7 @@ namespace Gamestore.Controllers
         [HttpPost("{userId}/add-games")]
         public async Task<IActionResult> AddGamesToUser(Guid userId, [FromBody] List<int> gameIds)
         {
+            using var transaction = await _context.Database.BeginTransactionAsync();
             try
             {
                 if (gameIds == null || !gameIds.Any())
@@ -263,10 +262,25 @@ namespace Gamestore.Controllers
                     return BadRequest("No game IDs provided.");
                 }
 
-                var user = await _context.Users.FirstOrDefaultAsync(u => u.Id == userId);
+                // Use tracking query to ensure proper state management
+                var user = await _context.Users
+                    .FirstOrDefaultAsync(u => u.Id == userId);
+                    
                 if (user == null)
                 {
                     return NotFound("User not found.");
+                }
+
+                // Validate if all games exist
+                var existingGames = await _context.Games
+                    .Where(g => gameIds.Contains(g.Id))
+                    .Select(g => new { g.Id, g.Name })
+                    .ToListAsync();
+
+                if (existingGames.Count != gameIds.Count)
+                {
+                    var nonExistingGames = gameIds.Except(existingGames.Select(g => g.Id));
+                    return BadRequest($"Games with IDs {string.Join(", ", nonExistingGames)} do not exist.");
                 }
 
                 user.BoughtGames ??= new List<int>();
@@ -278,20 +292,24 @@ namespace Gamestore.Controllers
                 }
 
                 user.BoughtGames.AddRange(newGameIds);
-
-                // Explicitly mark the property as modified
-                _context.Entry(user).Property(u => u.BoughtGames).IsModified = true;
-
                 
+                // Mark entity as modified
+                _context.Entry(user).Property(u => u.BoughtGames).IsModified = true;
+                await _context.SaveChangesAsync();
+                
+                // Commit transaction
+                await transaction.CommitAsync();
+
                 return Ok(new
                 {
                     Message = "Games added successfully.",
-                    AddedGameIds = newGameIds
+                    AddedGames = existingGames.Where(g => newGameIds.Contains(g.Id)).ToList(),
+                    TotalGamesCount = user.BoughtGames.Count
                 });
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"[Error] {ex.Message}");
+                await transaction.RollbackAsync();
                 return StatusCode(500, $"An error occurred while adding games to the user: {ex.Message}");
             }
         }
@@ -299,33 +317,96 @@ namespace Gamestore.Controllers
         [HttpGet("{userId}/bought-games")]
         public async Task<IActionResult> GetUserBoughtGames(Guid userId)
         {
-            var user = await _context.Users.FindAsync(userId);
-            if (user == null)
+            try 
             {
-                return NotFound("User not found.");
-            }
+                var user = await _context.Users
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(u => u.Id == userId);
 
-            return Ok(user.BoughtGames);
+                if (user == null)
+                {
+                    return NotFound("User not found.");
+                }
+
+                if (user.BoughtGames == null || !user.BoughtGames.Any())
+                {
+                    return Ok(new { Games = new List<GameDto>(), TotalGames = 0 });
+                }
+
+                var games = await _context.Games
+                    .Where(g => user.BoughtGames.Contains(g.Id))
+                    .Select(g => new
+                    {
+                        g.Id,
+                        g.Name,
+                        g.Description,
+                        g.Image,
+                        g.OriginalPrice,
+                        g.DiscountedPrice,
+                        g.Rating,
+                        g.Genre
+                    })
+                    .ToListAsync();
+
+                return Ok(new
+                {
+                    Games = games,
+                    TotalGames = games.Count
+                });
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"An error occurred while retrieving user's games: {ex.Message}");
+            }
         }
 
         [HttpDelete("{userId}/remove-game")]
         public async Task<IActionResult> RemoveGameFromUser(Guid userId, [FromBody] int gameId)
         {
-            var user = await _context.Users.FindAsync(userId);
-            if (user == null)
+            using var transaction = await _context.Database.BeginTransactionAsync();
+            try
             {
-                return NotFound("User not found.");
-            }
+                var user = await _context.Users
+                    .FirstOrDefaultAsync(u => u.Id == userId);
 
-            if (!user.BoughtGames.Contains(gameId))
+                if (user == null)
+                {
+                    return NotFound("User not found.");
+                }
+
+                if (user.BoughtGames == null || !user.BoughtGames.Contains(gameId))
+                {
+                    return BadRequest("The specified game is not in the user's inventory.");
+                }
+
+                var game = await _context.Games
+                    .Where(g => g.Id == gameId)
+                    .Select(g => new { g.Id, g.Name })
+                    .FirstOrDefaultAsync();
+
+                if (game == null)
+                {
+                    return NotFound("Game not found.");
+                }
+
+                user.BoughtGames.Remove(gameId);
+                _context.Entry(user).Property(u => u.BoughtGames).IsModified = true;
+                await _context.SaveChangesAsync();
+                
+                await transaction.CommitAsync();
+
+                return Ok(new 
+                { 
+                    Message = $"Game '{game.Name}' removed successfully.",
+                    RemovedGameId = gameId,
+                    RemainingGamesCount = user.BoughtGames.Count
+                });
+            }
+            catch (Exception ex)
             {
-                return BadRequest("The specified game is not in the user's inventory.");
+                await transaction.RollbackAsync();
+                return StatusCode(500, $"An error occurred while removing the game: {ex.Message}");
             }
-
-            user.BoughtGames.Remove(gameId);
-            await _context.SaveChangesAsync();
-
-            return Ok("Game removed successfully.");
         }
 
         [HttpDelete("{id:guid}")]

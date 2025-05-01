@@ -93,6 +93,11 @@ public class GamesController : ControllerBase
                 gameDto.Image = await _fileStorage.Store(container, gameDto.Picture);
             }
 
+            if (gameDto.Rating < 0)
+            {
+                gameDto.Rating = 0;
+            }
+
             await _context.Games.AddAsync(gameDto);
             await _context.SaveChangesAsync();
 
@@ -466,6 +471,38 @@ public class GamesController : ControllerBase
         catch (Exception ex)
         {
             return StatusCode(500, $"An error occurred while retrieving games by genre: {ex.Message}");
+        }
+    }
+
+    [HttpPost("{id:int}/review")]
+    public async Task<IActionResult> ReviewGame(int id, [FromBody] GameReviewDto reviewDto)
+    {
+        try
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            var game = await _context.Games.FindAsync(id);
+            if (game == null)
+            {
+                return NotFound($"Game with ID {id} not found");
+            }
+
+            game.Rating = (game.Rating + reviewDto.Rating) / 2;
+
+            _context.Entry(game).Property(g => g.Rating).IsModified = true;
+            await _context.SaveChangesAsync();
+
+            return Ok(new { 
+                GameId = game.Id, 
+                NewRating = game.Rating 
+            });
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred while reviewing the game: {ex.Message}");
         }
     }
 }
