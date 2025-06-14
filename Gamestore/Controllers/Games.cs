@@ -24,143 +24,55 @@ public class GamesController : ControllerBase
         _httpContextAccessor = httpContextAccessor;
     }
 
-    private static string GetFullImageUrl(string imagePath, HttpContext context)
+    private static string ProcessImageUrl(string imagePath, HttpContext context)
     {
         if (string.IsNullOrEmpty(imagePath)) return "";
-
-        if (imagePath.StartsWith("http") && !imagePath.Contains("/games/"))
-        {
-            return imagePath;
-        }
-
-        if (imagePath.Contains("/games/"))
-        {
-            imagePath = imagePath[(imagePath.IndexOf("/games/") + 7)..];
-        }
-
-        return $"{context.Request.Scheme}://{context.Request.Host}/games/{imagePath}";
-    }
-
-    [HttpGet("image/{*imagePath}")]
-    public IActionResult GetImage(string imagePath)
-    {
-        imagePath = imagePath?.Replace("..", "").TrimStart('/');
-
-        var path = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "games", imagePath ?? "");
-        if (!System.IO.File.Exists(path))
-        {
-            return NotFound();
-        }
-
-        var extension = Path.GetExtension(path).ToLower();
-        var contentType = extension switch
-        {
-            ".jpg" or ".jpeg" => "image/jpeg",
-            ".png" => "image/png",
-            ".gif" => "image/gif",
-            ".webp" => "image/webp",
-            _ => "application/octet-stream"
-        };
-
-        var imageFileStream = System.IO.File.OpenRead(path);
-        return File(imageFileStream, contentType);
+        if (imagePath.StartsWith("http")) return imagePath;
+        return $"{context.Request.Scheme}://{context.Request.Host}/games/{imagePath.Replace("/games/", "")}";
     }
 
     [HttpPost]
     public async Task<IActionResult> CreateGame([FromForm] GameDto gameDto)
     {
-        try
-        {
-            if (!ModelState.IsValid)
-            {
-                foreach (var entry in ModelState)
-                {
-                    foreach (var error in entry.Value.Errors)
-                    {
-                        Console.WriteLine($"[ModelError] {entry.Key}: {error.ErrorMessage}");
-                    }
-                }
-                return BadRequest(ModelState);
-            }
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
 
-            if (await _context.Games.AnyAsync(g => g.Name.ToLower() == gameDto.Name.ToLower()))
-            {
-                return BadRequest($"A game with the name '{gameDto.Name}' already exists");
-            }
+        if (await _context.Games.AnyAsync(g => g.Name.ToLower() == gameDto.Name.ToLower()))
+            return BadRequest($"A game with the name '{gameDto.Name}' already exists");
 
-            if (gameDto.Picture != null)
-            {
-                gameDto.Image = await _fileStorage.Store(container, gameDto.Picture);
-            }
+        if (gameDto.Picture != null)
+            gameDto.Image = await _fileStorage.Store(container, gameDto.Picture);
 
-            if (gameDto.Rating < 0)
-            {
-                gameDto.Rating = 0;
-            }
+        gameDto.Rating = Math.Max(0, gameDto.Rating);
 
-            await _context.Games.AddAsync(gameDto);
-            await _context.SaveChangesAsync();
+        await _context.Games.AddAsync(gameDto);
+        await _context.SaveChangesAsync();
 
-            return CreatedAtAction(nameof(GetGame), new { id = gameDto.Id }, gameDto);
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"An error occurred while creating the game: {ex.Message}");
-        }
+        return CreatedAtAction(nameof(GetGame), new { id = gameDto.Id }, gameDto);
     }
 
     [HttpPut("{id}")]
     public async Task<IActionResult> UpdateGame(int id, [FromForm] GameDto gameDto)
     {
-        try
-        {
-            if (!ModelState.IsValid)
-            {
-                foreach (var entry in ModelState)
-                {
-                    foreach (var error in entry.Value.Errors)
-                    {
-                        Console.WriteLine($"[ModelError] {entry.Key}: {error.ErrorMessage}");
-                    }
-                }
-                return BadRequest(ModelState);
-            }
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
 
-            var game = await _context.Games.AsNoTracking().FirstOrDefaultAsync(g => g.Id == id);
-            if (game == null)
-            {
-                return NotFound($"Game with ID {id} not found");
-            }
+        var game = await _context.Games.FindAsync(id);
+        if (game == null)
+            return NotFound($"Game with ID {id} not found");
 
-            if (gameDto.Picture != null)
-            {
-                gameDto.Image = await _fileStorage.Edit(game.Image, container, gameDto.Picture);
-            }
+        if (await _context.Games.AnyAsync(g => g.Id != id && g.Name.ToLower() == gameDto.Name.ToLower()))
+            return BadRequest($"A game with the name '{gameDto.Name}' already exists");
 
-            if (await _context.Games.AnyAsync(g => g.Id != id && g.Name.ToLower() == gameDto.Name.ToLower()))
-            {
-                return BadRequest($"A game with the name '{gameDto.Name}' already exists");
-            }
+        if (gameDto.Picture != null)
+            gameDto.Image = await _fileStorage.Edit(game.Image, container, gameDto.Picture);
+        else
+            gameDto.Image = game.Image;
 
-            _context.Attach(gameDto);
-            _context.Entry(gameDto).Property(g => g.Name).IsModified = true;
-            _context.Entry(gameDto).Property(g => g.Description).IsModified = true;
-            _context.Entry(gameDto).Property(g => g.Genre).IsModified = true;
-            _context.Entry(gameDto).Property(g => g.Image).IsModified = true;
-            _context.Entry(gameDto).Property(g => g.OriginalPrice).IsModified = true;
-            _context.Entry(gameDto).Property(g => g.DiscountedPrice).IsModified = true;
-            _context.Entry(gameDto).Property(g => g.Rating).IsModified = true;
-            _context.Entry(gameDto).Property(g => g.showFullDescription).IsModified = true;
-            _context.Entry(gameDto).Property(g => g.showOnFirstPage).IsModified = true;
-            _context.Entry(gameDto).Property(g => g.Platforms).IsModified = true;
+        _context.Entry(game).CurrentValues.SetValues(gameDto);
+        await _context.SaveChangesAsync();
 
-            await _context.SaveChangesAsync();
-            return NoContent();
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"An error occurred while updating the game: {ex.Message}");
-        }
+        return NoContent();
     }
 
     [HttpDelete("{id}")]
@@ -197,7 +109,7 @@ public class GamesController : ControllerBase
 
             if (!game.Image.StartsWith("http"))
             {
-                game.Image = GetFullImageUrl(game.Image, HttpContext);
+                game.Image = ProcessImageUrl(game.Image, HttpContext);
             }
             return Ok(game);
         }
@@ -225,7 +137,7 @@ public class GamesController : ControllerBase
             {
                 if (!game.Image.StartsWith("http"))
                 {
-                    game.Image = GetFullImageUrl(game.Image, HttpContext);
+                    game.Image = ProcessImageUrl(game.Image, HttpContext);
                 }
             }
 
@@ -256,7 +168,7 @@ public class GamesController : ControllerBase
             var games = await _context.Games.ToListAsync();
             foreach (var game in games)
             {
-                game.Image = GetFullImageUrl(game.Image, HttpContext);
+                game.Image = ProcessImageUrl(game.Image, HttpContext);
             }
             return Ok(games);
         }
@@ -266,56 +178,46 @@ public class GamesController : ControllerBase
         }
     }
 
-    [HttpGet("game-list/{page:int=1}")]
+    [HttpGet("game-list/{page:int}")]
     [OutputCache(PolicyName = "LongCache")]
     public async Task<IActionResult> GetSiteGames(int page)
     {
-        try
-        {
-            const int pageSize = 15;
-            var httpContext = HttpContext;
+        const int pageSize = 15;
+        var httpContext = HttpContext;
 
-            var query = _context.Games
-                .AsNoTracking()
-                .Select(g => new LimitedGameDto
-                {
-                    Id = g.Id,
-                    Name = g.Name,
-                    Description = g.Description,
-                    Image = g.Image.StartsWith("http") ? g.Image : $"{httpContext.Request.Scheme}://{httpContext.Request.Host}/games/{g.Image}",
-                    OriginalPrice = g.OriginalPrice,
-                    DiscountedPrice = g.DiscountedPrice,
-                    Platforms = g.Platforms,
-                    showFullDescription = g.showFullDescription
-                });
+        var query = _context.Games.AsNoTracking();
 
-            var totalGames = await query.CountAsync();
-            var totalPages = (int)Math.Ceiling(totalGames / (double)pageSize);
+        var totalGames = await query.CountAsync();
+        var totalPages = (int)Math.Ceiling(totalGames / (double)pageSize);
+        page = Math.Max(1, Math.Min(page, totalPages));
 
-            page = Math.Max(1, Math.Min(page, totalPages));
-
-            var games = await query
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToListAsync();
-
-            var response = new
+        var games = await query
+            .Skip((page - 1) * pageSize)
+            .Take(pageSize)
+            .Select(g => new LimitedGameDto
             {
-                Games = games,
-                CurrentPage = page,
-                PageSize = pageSize,
-                TotalGames = totalGames,
-                TotalPages = totalPages,
-                HasNext = page < totalPages,
-                HasPrevious = page > 1
-            };
+                Id = g.Id,
+                Name = g.Name,
+                Description = g.Description,
+                Image = g.Image.StartsWith("http") ? g.Image :
+                    $"{httpContext.Request.Scheme}://{httpContext.Request.Host}/games/{g.Image.Replace("/games/", "")}",
+                OriginalPrice = g.OriginalPrice,
+                DiscountedPrice = g.DiscountedPrice,
+                Platforms = g.Platforms,
+                showFullDescription = g.showFullDescription
+            })
+            .ToListAsync();
 
-            return Ok(response);
-        }
-        catch (Exception ex)
+        return Ok(new
         {
-            return StatusCode(500, $"An error occurred while retrieving site games: {ex.Message}");
-        }
+            Games = games,
+            CurrentPage = page,
+            PageSize = pageSize,
+            TotalGames = totalGames,
+            TotalPages = totalPages,
+            HasNext = page < totalPages,
+            HasPrevious = page > 1
+        });
     }
 
     [HttpGet("featured-games")]
@@ -332,7 +234,7 @@ public class GamesController : ControllerBase
                     Id = g.Id,
                     Name = g.Name,
                     Description = g.Description,
-                    Image = g.Image.StartsWith("http") ? g.Image : $"{httpContext.Request.Scheme}://{httpContext.Request.Host}/games/{g.Image}",
+                    Image = ProcessImageUrl(g.Image, HttpContext),
                     OriginalPrice = g.OriginalPrice,
                     DiscountedPrice = g.DiscountedPrice,
                     Platforms = g.Platforms,
@@ -376,7 +278,6 @@ public class GamesController : ControllerBase
                 return BadRequest($"A game with the name '{gameDto.Name}' already exists");
             }
 
-            // Set the Id from the route parameter
             gameDto.Id = id;
 
             if (gameDto.Picture != null)
@@ -423,7 +324,7 @@ public class GamesController : ControllerBase
                     Id = g.Id,
                     Name = g.Name,
                     Description = g.Description,
-                    Image = g.Image.StartsWith("http") ? g.Image : $"{httpContext.Request.Scheme}://{httpContext.Request.Host}/games/{g.Image}",
+                    Image = ProcessImageUrl(g.Image, HttpContext),
                     OriginalPrice = g.OriginalPrice,
                     DiscountedPrice = g.DiscountedPrice,
                     Platforms = g.Platforms,
@@ -453,7 +354,7 @@ public class GamesController : ControllerBase
                     Id = g.Id,
                     Name = g.Name,
                     Description = g.Description,
-                    Image = g.Image.StartsWith("http") ? g.Image : $"{httpContext.Request.Scheme}://{httpContext.Request.Host}/games/{g.Image}",
+                    Image = ProcessImageUrl(g.Image, HttpContext),
                     OriginalPrice = g.OriginalPrice,
                     DiscountedPrice = g.DiscountedPrice,
                     Platforms = g.Platforms,
@@ -477,32 +378,16 @@ public class GamesController : ControllerBase
     [HttpPost("{id:int}/review")]
     public async Task<IActionResult> ReviewGame(int id, [FromBody] GameReviewDto reviewDto)
     {
-        try
-        {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+        if (!ModelState.IsValid)
+            return BadRequest(ModelState);
 
-            var game = await _context.Games.FindAsync(id);
-            if (game == null)
-            {
-                return NotFound($"Game with ID {id} not found");
-            }
+        var game = await _context.Games.FindAsync(id);
+        if (game == null)
+            return NotFound($"Game with ID {id} not found");
 
-            game.Rating = (game.Rating + reviewDto.Rating) / 2;
+        game.Rating = (game.Rating + reviewDto.Rating) / 2;
+        await _context.SaveChangesAsync();
 
-            _context.Entry(game).Property(g => g.Rating).IsModified = true;
-            await _context.SaveChangesAsync();
-
-            return Ok(new { 
-                GameId = game.Id, 
-                NewRating = game.Rating 
-            });
-        }
-        catch (Exception ex)
-        {
-            return StatusCode(500, $"An error occurred while reviewing the game: {ex.Message}");
-        }
+        return Ok(new { GameId = game.Id, NewRating = game.Rating });
     }
 }

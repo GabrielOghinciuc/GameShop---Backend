@@ -1,6 +1,5 @@
 namespace Gamestore.Models
 {
-    // Renamed class to be more descriptive but keeping the same structure
     public class LimitedGameDto
     {
         public int Id { get; set; }

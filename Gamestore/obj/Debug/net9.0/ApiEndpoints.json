@@ -322,7 +322,7 @@
       {
         "Name": "page",
         "Type": "System.Int32",
-        "IsRequired": false
+        "IsRequired": true
       }
     ],
     "ReturnTypes": []
@@ -337,22 +337,6 @@
     "Parameters": [
       {
         "Name": "genre",
-        "Type": "System.String",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "Gamestore.Controllers.GamesController",
-    "Method": "GetImage",
-    "RelativePath": "Games/image/{imagePath}",
-    "HttpMethod": "GET",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "imagePath",
         "Type": "System.String",
         "IsRequired": true
       }
@@ -489,7 +473,7 @@
   {
     "ContainingType": "Gamestore.Controllers.UsersController",
     "Method": "RemoveGameFromUser",
-    "RelativePath": "Users/{userId}/remove-game",
+    "RelativePath": "Users/{userId}/remove-game/{gameId}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

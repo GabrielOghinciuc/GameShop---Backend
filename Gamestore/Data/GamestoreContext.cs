@@ -16,13 +16,14 @@ namespace Gamestore.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-
+            // Set up Users table
             modelBuilder.Entity<User>()
                 .Property(u => u.BoughtGames)
                 .HasConversion(
                     v => string.Join(',', v ?? new List<int>()),
-                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries).Select(int.Parse).ToList()
+                    v => v.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                         .Select(int.Parse)
+                         .ToList()
                 );
 
             modelBuilder.Entity<GameDto>(entity =>
@@ -32,12 +33,11 @@ namespace Gamestore.Data
                 entity.Property(e => e.Platforms)
                     .HasConversion(
                         v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null),
-                        v => JsonSerializer.Deserialize<List<string>>(v, (JsonSerializerOptions)null))
-                    .HasColumnType("nvarchar(max)");
+                        v => JsonSerializer.Deserialize<List<string>>(v, (JsonSerializerOptions)null)
+                    );
 
                 entity.HasIndex(e => e.Name)
-                    .IsUnique()
-                    .HasDatabaseName("IX_Games_Name");
+                    .IsUnique();
 
                 entity.Property(e => e.Name)
                     .IsRequired()
@@ -47,12 +47,6 @@ namespace Gamestore.Data
                     .IsRequired()
                     .HasMaxLength(50);
             });
-        }
-
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.LogTo(Console.WriteLine); // Log SQL queries to the console
-            base.OnConfiguring(optionsBuilder);
         }
     }
 }

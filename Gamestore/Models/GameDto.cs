@@ -1,12 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Gamestore.Validations;
-using Microsoft.AspNetCore.Http;  // Add this line
+using Microsoft.AspNetCore.Http;
 
 namespace Gamestore.Models
 {
     [Table("Games")]
-    public class GameDto : IGame
+    public class GameDto
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
@@ -21,7 +21,7 @@ namespace Gamestore.Models
         public string? Description { get; set; }
 
         [Required]
-        public string Image { get; set; }
+        public string? Image { get; set; }
 
         [NotMapped]
         public IFormFile? Picture { get; set; }

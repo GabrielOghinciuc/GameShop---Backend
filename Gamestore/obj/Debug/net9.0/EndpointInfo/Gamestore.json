@@ -5,28 +5,6 @@
     "version": "1.0"
   },
   "paths": {
-    "/Games/image/{imagePath}": {
-      "get": {
-        "tags": [
-          "Games"
-        ],
-        "parameters": [
-          {
-            "name": "imagePath",
-            "in": "path",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
     "/Games": {
       "post": {
         "tags": [
@@ -959,7 +937,7 @@
         }
       }
     },
-    "/Users/{userId}/remove-game": {
+    "/Users/{userId}/remove-game/{gameId}": {
       "delete": {
         "tags": [
           "Users"
@@ -973,30 +951,17 @@
               "type": "string",
               "format": "uuid"
             }
-          }
-        ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "type": "integer",
-                "format": "int32"
-              }
-            },
-            "text/json": {
-              "schema": {
-                "type": "integer",
-                "format": "int32"
-              }
-            },
-            "application/*+json": {
-              "schema": {
-                "type": "integer",
-                "format": "int32"
-              }
+          },
+          {
+            "name": "gameId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int32"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "OK"
