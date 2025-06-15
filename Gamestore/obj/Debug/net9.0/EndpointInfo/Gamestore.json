@@ -370,6 +370,18 @@
         }
       }
     },
+    "/Games/discounted": {
+      "get": {
+        "tags": [
+          "Games"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/Games/edit-game/{id}": {
       "put": {
         "tags": [

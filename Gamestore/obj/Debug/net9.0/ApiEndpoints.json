@@ -227,6 +227,16 @@
   },
   {
     "ContainingType": "Gamestore.Controllers.GamesController",
+    "Method": "GetDiscountedGames",
+    "RelativePath": "Games/discounted",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "Gamestore.Controllers.GamesController",
     "Method": "EditGame",
     "RelativePath": "Games/edit-game/{id}",
     "HttpMethod": "PUT",

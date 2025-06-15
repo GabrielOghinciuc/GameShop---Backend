@@ -250,7 +250,32 @@ public class GamesController : ControllerBase
         }
     }
 
-    [HttpPut("edit-game/{id}")]
+    [HttpGet("discounted")]
+    public async Task<IActionResult> GetDiscountedGames()
+    {
+        try
+        {
+            var discountedGames = await _context.Games
+                .Where(g => g.DiscountedPrice.HasValue && g.DiscountedPrice > 0)
+                .ToListAsync();
+
+            foreach (var game in discountedGames)
+            {
+                if (!string.IsNullOrEmpty(game.Image) && !game.Image.StartsWith("http"))
+                {
+                    game.Image = ProcessImageUrl(game.Image, HttpContext);
+                }
+            }
+            return Ok(discountedGames);
+        }
+        catch (Exception ex)
+        {
+            return StatusCode(500, $"An error occurred while retrieving discounted games: {ex.Message}");
+        }
+
+    }
+
+        [HttpPut("edit-game/{id}")]
     public async Task<IActionResult> EditGame(int id, [FromForm] GameDto gameDto)
     {
         try

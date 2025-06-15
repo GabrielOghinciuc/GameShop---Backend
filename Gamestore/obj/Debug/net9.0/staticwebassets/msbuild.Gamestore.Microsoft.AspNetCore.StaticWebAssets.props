@@ -126,6 +126,24 @@
       <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
       <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\9a275ff4-b9f1-4be9-b729-588c83d16dd0.jpg'))</OriginalItemSpec>
     </StaticWebAsset>
+    <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\ac4ff9a3-c704-4a51-ba0e-6362998d57cc.jpg'))">
+      <SourceType>Package</SourceType>
+      <SourceId>Gamestore</SourceId>
+      <ContentRoot>$(MSBuildThisFileDirectory)..\staticwebassets\</ContentRoot>
+      <BasePath>_content/Gamestore</BasePath>
+      <RelativePath>games/ac4ff9a3-c704-4a51-ba0e-6362998d57cc.jpg</RelativePath>
+      <AssetKind>All</AssetKind>
+      <AssetMode>All</AssetMode>
+      <AssetRole>Primary</AssetRole>
+      <RelatedAsset></RelatedAsset>
+      <AssetTraitName></AssetTraitName>
+      <AssetTraitValue></AssetTraitValue>
+      <Fingerprint>d9kb4s8e8z</Fingerprint>
+      <Integrity>r1BDkAGTShukfdegph+UOS6hkQkycacbVG7vpAvFFcw=</Integrity>
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      <OriginalItemSpec>$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\ac4ff9a3-c704-4a51-ba0e-6362998d57cc.jpg'))</OriginalItemSpec>
+    </StaticWebAsset>
     <StaticWebAsset Include="$([System.IO.Path]::GetFullPath('$(MSBuildThisFileDirectory)..\staticwebassets\games\b81611dd-32b9-42dc-957d-b9e5f958a845.jpg'))">
       <SourceType>Package</SourceType>
       <SourceId>Gamestore</SourceId>
